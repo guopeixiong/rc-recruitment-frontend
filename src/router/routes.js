@@ -44,6 +44,114 @@ const frameIn = [
         name: 'redirect',
         hidden: true,
         component: _import('system/function/redirect')
+      },
+      // 信息管理-简介信息
+      {
+        path: 'info/introduction',
+        name: 'introduction',
+        meta: {
+          title: '简介信息',
+          auth: true
+        },
+        component: _import('info_manage/index_page')
+      },
+      // 信息管理-常见问题
+      {
+        path: 'info/commonQa',
+        name: 'commonQa',
+        meta: {
+          title: '常见问题',
+          auth: true
+        },
+        component: _import('info_manage/common_qa')
+      },
+      // 我的-个人中心
+      {
+        path: 'mine',
+        name: 'mine',
+        meta: {
+          title: '我的',
+          auth: true
+        },
+        component: _import('mine')
+      },
+      // 报名管理-报名表模板
+      {
+        path: 'signup/template',
+        name: 'template',
+        meta: {
+          title: '报名表模板',
+          auth: true
+        },
+        component: _import('signup_form/form_template')
+      },
+      // 报名管理-报名流程
+      {
+        path: 'signup/process',
+        name: 'process',
+        meta: {
+          title: '报名流程',
+          auth: true
+        },
+        component: _import('signup_form/signup_process')
+      },
+      // 报名管理-报名记录
+      {
+        path: 'signup/record',
+        name: 'record',
+        meta: {
+          title: '报名记录',
+          auth: true
+        },
+        component: _import('signup_form/signup_record')
+      },{
+        path: 'user/user',
+        name: 'user',
+        meta: {
+          title: '用户',
+          auth: true
+        },
+        component: _import('user/default')
+      },
+      // 用户-普通用户
+      {
+        path: 'user/admin',
+        name: 'admin',
+        meta: {
+          title: '管理员',
+          auth: true
+        },
+        component: _import('user/admin')
+      },
+      // 用户咨询
+      {
+        path: 'consult',
+        name: 'consult',
+        meta: {
+          title: '用户咨询',
+          auth: true
+        },
+        component: _import('user_consultation')
+      },
+      // 系统管理-系统配置
+      {
+        path: 'sys/setting',
+        name: 'setting',
+        meta: {
+          title: '系统设置',
+          auth: true
+        },
+        component: _import('system/setting')
+      },
+      // 系统管理-用户操作日志
+      {
+        path: 'sys/optLog',
+        name: 'optLog',
+        meta: {
+          title: '系统设置',
+          auth: true
+        },
+        component: _import('system/opt_log')
       }
     ]
   }
