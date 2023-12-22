@@ -14,16 +14,12 @@
       <div
         class="page-login--content"
         flex="dir:top main:justify cross:stretch box:justify">
-        <div class="page-login--content-header">
-          <p class="page-login--content-header-motto">
-            时间是一切财富中最宝贵的财富
-          </p>
-        </div>
+        <div class="page-login--content-header"></div>
         <div
           class="page-login--content-main"
           flex="dir:top main:center cross:center">
           <!-- logo -->
-          <img class="page-login--logo" src="./image/logo@2x.png">
+          <img class="page-login--logo" src="./image/rc-name.png">
           <!-- form -->
           <div class="page-login--form">
             <el-card shadow="never">
@@ -37,26 +33,14 @@
                   <el-input
                     type="text"
                     v-model="formLogin.username"
-                    placeholder="用户名">
-                    <i slot="prepend" class="fa fa-user-circle-o"></i>
+                    placeholder="请输入账号">
                   </el-input>
                 </el-form-item>
                 <el-form-item prop="password">
                   <el-input
                     type="password"
                     v-model="formLogin.password"
-                    placeholder="密码">
-                    <i slot="prepend" class="fa fa-keyboard-o"></i>
-                  </el-input>
-                </el-form-item>
-                <el-form-item prop="code">
-                  <el-input
-                    type="text"
-                    v-model="formLogin.code"
-                    placeholder="验证码">
-                    <template slot="append">
-                      <img class="login-code" src="./image/login-code.png">
-                    </template>
+                    placeholder="请输入密码">
                   </el-input>
                 </el-form-item>
                 <el-button
@@ -68,56 +52,11 @@
                 </el-button>
               </el-form>
             </el-card>
-            <p
-              class="page-login--options"
-              flex="main:justify cross:center">
-              <span><d2-icon name="question-circle"/> 忘记密码</span>
-              <span>注册用户</span>
-            </p>
-            <!-- quick login -->
-            <el-button class="page-login--quick" size="default" type="info" @click="dialogVisible = true">
-              快速选择用户（测试功能）
-            </el-button>
           </div>
         </div>
-        <div class="page-login--content-footer">
-          <p class="page-login--content-footer-locales">
-            <a
-              v-for="language in $languages"
-              :key="language.value"
-              @click="onChangeLocale(language.value)">
-              {{ language.label }}
-            </a>
-          </p>
-          <p class="page-login--content-footer-copyright">
-            Copyright
-            <d2-icon name="copyright"/>
-            2018 D2 Projects 开源组织出品
-            <a href="https://github.com/FairyEver">
-              @FairyEver
-            </a>
-          </p>
-          <p class="page-login--content-footer-options">
-            <a href="#">帮助</a>
-            <a href="#">隐私</a>
-            <a href="#">条款</a>
-          </p>
-        </div>
+        <div class="page-login--content-footer"></div>
       </div>
     </div>
-    <el-dialog
-      title="快速选择用户"
-      :visible.sync="dialogVisible"
-      width="400px">
-      <el-row :gutter="10" style="margin: -20px 0px -10px 0px;">
-        <el-col v-for="(user, index) in users" :key="index" :span="8">
-          <div class="page-login--quick-user" @click="handleUserBtnClick(user)">
-            <d2-icon name="user-circle-o"/>
-            <span>{{user.name}}</span>
-          </div>
-        </el-col>
-      </el-row>
-    </el-dialog>
   </div>
 </template>
 
@@ -133,37 +72,17 @@ export default {
     return {
       timeInterval: null,
       time: dayjs().format('HH:mm:ss'),
-      // 快速选择用户
-      dialogVisible: false,
-      users: [
-        {
-          name: 'Admin',
-          username: 'admin',
-          password: 'admin'
-        },
-        {
-          name: 'Editor',
-          username: 'editor',
-          password: 'editor'
-        },
-        {
-          name: 'User1',
-          username: 'user1',
-          password: 'user1'
-        }
-      ],
       // 表单
       formLogin: {
-        username: 'admin',
-        password: 'admin',
-        code: 'v9am'
+        username: '',
+        password: ''
       },
       // 表单校验
       rules: {
         username: [
           {
             required: true,
-            message: '请输入用户名',
+            message: '请输入账号',
             trigger: 'blur'
           }
         ],
@@ -171,13 +90,6 @@ export default {
           {
             required: true,
             message: '请输入密码',
-            trigger: 'blur'
-          }
-        ],
-        code: [
-          {
-            required: true,
-            message: '请输入验证码',
             trigger: 'blur'
           }
         ]
@@ -200,15 +112,6 @@ export default {
       this.time = dayjs().format('HH:mm:ss')
     },
     /**
-     * @description 接收选择一个用户快速登录的事件
-     * @param {Object} user 用户信息
-     */
-    handleUserBtnClick (user) {
-      this.formLogin.username = user.username
-      this.formLogin.password = user.password
-      this.submit()
-    },
-    /**
      * @description 提交表单
      */
     // 提交登录信息
@@ -219,7 +122,7 @@ export default {
           // 注意 这里的演示没有传验证码
           // 具体需要传递的数据请自行修改代码
           this.login({
-            username: this.formLogin.username,
+            stuNum: this.formLogin.username,
             password: this.formLogin.password
           })
             .then(() => {
@@ -277,7 +180,7 @@ export default {
   }
   // main
   .page-login--logo {
-    width: 240px;
+    width: 600px;
     margin-bottom: 2em;
     margin-top: -2em;
   }
@@ -290,6 +193,8 @@ export default {
     }
     // 登录按钮
     .button-login {
+      background-color: #51C4C7;
+      border: #fff;
       width: 100%;
     }
     // 输入框左边的图表区域缩窄

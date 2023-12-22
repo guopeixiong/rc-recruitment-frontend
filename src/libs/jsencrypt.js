@@ -1,4 +1,4 @@
-import JSEncrypt from '@/utils/jsencrypt.min'
+import JSEncrypt from './jsencrypt-min'
 
 // 密钥对生成 http://web.chacuo.net/netrsakeypair
 

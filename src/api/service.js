@@ -33,16 +33,16 @@ function createService () {
       } else {
         // 有 code 代表这是一个后端接口 可以进行进一步的判断
         switch (code) {
-          case 0:
+          case 200:
             // [ 示例 ] code === 0 代表没有错误
             return dataAxios.data
-          case 'xxx':
+          case 500:
             // [ 示例 ] 其它和后台约定的 code
-            errorCreate(`[ code: xxx ] ${dataAxios.msg}: ${response.config.url}`)
+            errorCreate(`${dataAxios.msg}`)
             break
           default:
             // 不是正确的 code
-            errorCreate(`${dataAxios.msg}: ${response.config.url}`)
+            errorCreate(`${dataAxios.msg}`)
             break
         }
       }
