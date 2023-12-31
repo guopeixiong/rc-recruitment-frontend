@@ -23,8 +23,7 @@ export default ({ service, request, serviceForMock, requestForMock, mock, faker,
   SYS_USER_USERINFO (data = {}) {
     return request({
       url: '/h5/userInfo/auth/getUserInfo',
-      method: 'get',
-      data
+      method: 'get'
     })
   }
 })
