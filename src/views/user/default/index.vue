@@ -126,6 +126,7 @@ export default {
           {
             text: '禁用',
             type: 'danger',
+            plain: true,
             size: 'small',
             emit: 'disableUser',
             show: function (index, row) {
@@ -135,6 +136,7 @@ export default {
           {
             text: '启用',
             type: 'success ',
+            plain: true,
             size: 'small',
             emit: 'enableUser',
             show: function (index, row) {
@@ -147,7 +149,7 @@ export default {
   },
   methods: {
     paginationCurrentChange(currentPage) {
-      this.getData(currentPage + 1)
+      this.getData(currentPage)
     },
     disableUser({_, row}) {
       this.$api.SYS_USER_STATUS({id: row.id, status: 1}).then(() => {
@@ -168,7 +170,6 @@ export default {
       })
     },
     getData(current) {
-      console.log(this.form)
       this.$api.SYS_USER_GET_NORMAL_LIST(
         {
           pageNo: current,
