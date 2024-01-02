@@ -24,4 +24,12 @@ export default ({ service, request, serviceForMock, requestForMock, mock, faker,
     })
   },
 
+  SYS_COMMON_QA_DELETE(data = {}) {
+    return request({
+      url: '/admin/commonQa/delete',
+      method: 'delete',
+      data
+    })
+  },
+
 })

@@ -1,5 +1,7 @@
 <template>
   <d2-container class="container">
+    <el-button size="small" type="danger" plain :disabled="selectedId.length <= 0" @click="deleteQA">删除</el-button>
+    <el-button size="small" type="success" plain @click="dialogFormVisible = true">新增</el-button>
     <d2-crud
       ref="d2Crud"
       :columns="columns"
@@ -7,6 +9,8 @@
       :options="options"
       :row-handle="rowHandler"
       :data="data"
+      selection-row
+      @selection-change="handleSelectionChange"
       @pagination-current-change="paginationCurrentChange"
       @opt="optQa"/>
     <el-dialog title="常见问题" :visible.sync="dialogFormVisible" center width="30%">
@@ -63,7 +67,6 @@
         <el-button type="primary" @click="submit('qa')">确 定</el-button>
       </div>
     </el-dialog>
-    <div class="add"><el-button plain size="small" type="primary" class="add_btn" icon="el-icon-plus" circle @click="dialogFormVisible = true"></el-button></div>
   </d2-container>
 </template>
 <script>
@@ -149,6 +152,7 @@ export default {
         enable: '0',
         top: '0'
       },
+      selectedId: [],
       dialogFormVisible: false,
       rules: {
         question: [
@@ -206,7 +210,7 @@ export default {
           this.submitForAdd()
           return
         }
-        this.$api.SYS_COMMON_QA_UPDATE(this.qa).then(res => {
+        this.$api.SYS_COMMON_QA_UPDATE(this.qa).then(_ => {
           this.dialogFormVisible = false
           this.$message.success('修改成功')
           this.getData(this.page.currentPage)
@@ -214,10 +218,18 @@ export default {
       })
     },
     submitForAdd() {
-      this.$api.SYS_COMMON_QA_ADD(this.qa).then(res => {
+      this.$api.SYS_COMMON_QA_ADD(this.qa).then(_ => {
         this.dialogFormVisible = false
         this.$message.success('新增成功')
         this.getData(this.page.currentPage)
+        this.qa = {
+          id: '',
+          question: '',
+          answer: '',
+          remark: '',
+          enable: '0',
+          top: '0'
+        }
       })
     },
     getData(current) {
@@ -229,7 +241,23 @@ export default {
         this.page.currentPage = Number(res.current)
         this.page.pageCount = Number(res.pages)
       })
-    }
+    },
+    handleSelectionChange(selection) {
+      this.selectedId = []
+      selection.forEach(item => {
+        this.selectedId.push(item.id)
+      })
+    },
+    deleteQA() {
+      if (this.selectedId.length <= 0) {
+        this.$message.error('请选择要删除的记录')
+        return
+      }
+      this.$api.SYS_COMMON_QA_DELETE({ids: this.selectedId}).then(() => {
+        this.getData(this.page.currentPage)
+        this.$message.success('删除成功')
+      })
+    },
   },
   created() {
     this.getData(1)
@@ -237,12 +265,4 @@ export default {
 }
 </script>
 <style lang="scss">
-.container {
-  position: relative;
-  .add {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-  }
-}
 </style>
