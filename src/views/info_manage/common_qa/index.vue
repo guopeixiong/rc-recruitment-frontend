@@ -13,7 +13,7 @@
       @selection-change="handleSelectionChange"
       @pagination-current-change="paginationCurrentChange"
       @opt="optQa"/>
-    <el-dialog title="常见问题" :visible.sync="dialogFormVisible" center width="30%">
+    <el-dialog title="常见问题" :visible.sync="dialogFormVisible" center width="30%" :close-on-click-modal="false">
       <el-form :model="qa" :rules="rules" ref="qa">
         <el-form-item label="问题" prop="question">
           <el-input
@@ -63,7 +63,7 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button @click="reset">恢 复</el-button>
         <el-button type="primary" @click="submit('qa')">确 定</el-button>
       </div>
     </el-dialog>
@@ -152,6 +152,7 @@ export default {
         enable: '0',
         top: '0'
       },
+      qaCopy: '',
       selectedId: [],
       dialogFormVisible: false,
       rules: {
@@ -191,6 +192,9 @@ export default {
     paginationCurrentChange(currentPage) {
       this.getData(currentPage)
     },
+    reset() {
+      this.qa = JSON.parse(this.qaCopy)
+    },
     optQa({_, row}) {
       this.qa.id = row.id
       this.qa.question = row.question
@@ -198,6 +202,7 @@ export default {
       this.qa.remark = row.remark
       this.qa.top = row.top === 1 ? '1' : '0'
       this.qa.enable = row.enable === 1 ? '1' : '0'
+      this.qaCopy = JSON.stringify(this.qa)
       this.dialogFormVisible = true
     },
     toAdd() {
@@ -221,7 +226,17 @@ export default {
           this.submitForAdd()
           return
         }
-        this.$api.SYS_COMMON_QA_UPDATE(this.qa).then(_ => {
+        if (this.qaCopy === JSON.stringify(this.qa)) {
+          this.$message.warning('尚未改动任何信息')
+          return
+        }
+        this.qaCopy = JSON.parse(this.qaCopy)
+        this.qaCopy.top = this.qa.top == this.qaCopy.top ? null : this.qa.top
+        this.qaCopy.enable = this.qa.enable == this.qaCopy.enable ? null : this.qa.enable
+        this.qaCopy.remark = this.qa.remark == this.qaCopy.remark ? null : this.qa.remark
+        this.qaCopy.question = this.qa.question == this.qaCopy.question ? null : this.qa.question
+        this.qaCopy.answer = this.qa.answer == this.qaCopy.answer ? null : this.qa.answer
+        this.$api.SYS_COMMON_QA_UPDATE(this.qaCopy).then(_ => {
           this.dialogFormVisible = false
           this.$message.success('修改成功')
           this.getData(this.page.currentPage)
