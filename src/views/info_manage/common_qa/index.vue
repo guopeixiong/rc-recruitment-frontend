@@ -1,7 +1,7 @@
 <template>
   <d2-container class="container">
     <el-button size="small" type="danger" plain :disabled="selectedId.length <= 0" @click="deleteQA">删除</el-button>
-    <el-button size="small" type="success" plain @click="dialogFormVisible = true">新增</el-button>
+    <el-button size="small" type="success" plain @click="toAdd">新增</el-button>
     <d2-crud
       ref="d2Crud"
       :columns="columns"
@@ -170,7 +170,7 @@ export default {
       },
       options: {
         highlightCurrentRow: true,
-        border: true
+        stripe: true
       },
       rowHandler: {
         columnHeader: '操作',
@@ -198,6 +198,17 @@ export default {
       this.qa.remark = row.remark
       this.qa.top = row.top === 1 ? '1' : '0'
       this.qa.enable = row.enable === 1 ? '1' : '0'
+      this.dialogFormVisible = true
+    },
+    toAdd() {
+      this.qa = {
+        id: '',
+        question: '',
+        answer: '',
+        remark: '',
+        enable: '0',
+        top: '0'
+      }
       this.dialogFormVisible = true
     },
     submit(formName) {

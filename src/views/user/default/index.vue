@@ -116,7 +116,7 @@ export default {
       },
       options: {
         highlightCurrentRow: true,
-        border: true
+        stripe: true
       },
       rowHandler: {
         columnHeader: '操作',
