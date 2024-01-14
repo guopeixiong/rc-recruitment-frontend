@@ -169,9 +169,6 @@ export default {
     paginationCurrentChange(currentPage) {
       this.getData(currentPage)
     },
-    optQa({_, row}) {
-
-    },
     getData(current) {
       this.$api.SYS_PROCESS_LIST({
         pageNum: current,

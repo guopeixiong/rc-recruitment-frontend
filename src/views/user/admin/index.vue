@@ -28,7 +28,7 @@
           <el-input v-model="admin.fullName" placeholder="请输入管理员姓名"></el-input>
         </el-form-item>
       </el-form>
-      <span class="tip">账号创建成功后账号密码将自动以邮件形式发送至该管理员邮箱</span>
+      <span class="tip"><i class="el-icon-warning"/> 账号创建成功后账号密码将自动以邮件形式发送至该管理员邮箱</span>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
         <el-button type="primary" @click="submit('admin')">确 定</el-button>

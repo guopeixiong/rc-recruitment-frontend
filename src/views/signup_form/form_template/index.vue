@@ -34,7 +34,7 @@
           </el-select>
         </el-form-item>
       </el-form>
-      <span style="color: #33333390">创建成功后请点击 查看&编辑 按钮添加题目</span>
+      <span style="color: #33333390"><i class="el-icon-warning"/> 创建成功后请点击 查看&编辑 按钮添加题目</span>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisibleTemplate = false">取 消</el-button>
         <el-button type="primary" @click="submitAddTmp('tmp')">确 定</el-button>
