@@ -104,7 +104,18 @@ const frameIn = [
           auth: true
         },
         component: _import('signup_form/signup_record')
-      },{
+      },
+      // 面试
+      {
+        path: 'signup/meeting',
+        name: 'meeting',
+        meta: {
+          title: '面试',
+          auth: true
+        },
+        component: _import('signup_form/signup_meeting')
+      },
+      {
         path: 'user/user',
         name: 'user',
         meta: {

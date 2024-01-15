@@ -14,7 +14,7 @@
       @opt="opt"/>
     <el-dialog title="咨询详情" :visible.sync="dialogFormVisible" center width="30%" :close-on-click-modal="false">
       <el-divider content-position="center">咨询用户信息</el-divider>
-      <el-descriptions class="margin-top" :column="2" size="small" border>
+      <el-descriptions class="margin-top" :column="2" size="medium" border>
         <el-descriptions-item>
           <template slot="label">
             <i class="el-icon-user"></i>
@@ -197,8 +197,12 @@ export default {
       this.consulting.replyContent = this.data[this.consulting.index].replyContent
     },
     submit() {
-      if (this.consulting.replyContent === '' || this.consulting.replyContent.match(/\s/)) {
+      if (this.consulting.replyContent === '' || this.consulting.replyContent.match(/^\s$/)) {
         this.$message.error('回复内容不能为空')
+        return
+      }
+      if (this.consulting.replyContent === this.data[this.consulting.index].replyContent) {
+        this.$message.error('回复内容不能与上次回复内容相同')
         return
       }
       this.$api.SYS_CONSULTING_REPLY({

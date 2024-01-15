@@ -371,12 +371,12 @@ export default {
         this.$message.error('请增加问题后再提交')
         return
       }
-      if (this.tmpDetail.name === '' || this.tmpDetail.name.match(/\s/)) {
+      if (this.tmpDetail.name === '' || this.tmpDetail.name.match(/^\s$/)) {
         this.$message.error('请输入报名表名称')
         return
       }
       for (let i = 0; i < this.formDetail.length; i++) {
-        if (this.formDetail[i].content === '' || this.formDetail[i].content.match(/\s/)) {
+        if (this.formDetail[i].content === '' || this.formDetail[i].content.match(/^\s$/)) {
           this.$message.error('问题内容不能为空')
           return
         }
@@ -386,7 +386,7 @@ export default {
             return
           }
           for (let j = 0; j < this.formDetail[i].options.length; j++) {
-            if (this.formDetail[i].options[j] === '' || this.formDetail[i].options[j].match(/\s/)) {
+            if (this.formDetail[i].options[j] === '' || this.formDetail[i].options[j].match(/^\s$/)) {
               this.$message.error('选项内容不能为空')
               return
             }

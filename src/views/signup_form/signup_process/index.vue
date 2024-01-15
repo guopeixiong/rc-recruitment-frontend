@@ -225,7 +225,7 @@ export default {
     },
     saveEditStatus() {
       this.editStatus.visible = false
-      if (this.editStatus.status === '' || this.editStatus.status.match(/\s/)) {
+      if (this.editStatus.status === '' || this.editStatus.status.match(/^\s$/)) {
         this.editStatus.status = ''
         return
       }
