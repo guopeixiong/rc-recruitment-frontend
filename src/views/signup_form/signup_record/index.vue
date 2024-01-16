@@ -111,6 +111,24 @@
                 type="textarea"
                 style="margin-top: 20px"
                 :autosize="{ minRows: 2, maxRows: 6}"/>
+      <div style="margin-top: 20px">
+        保存为模板：
+        <el-switch
+          v-model="email.saveAsTemplate"
+          active-value="1"
+          inactive-value="0">
+        </el-switch>
+      </div>
+      <div style="margin-top: 20px">
+        <el-select v-model="selectedEmailTmp" @change="setEmailContent" size="mini" placeholder="邮件模板">
+          <el-option
+            v-for="(item, index) in emailTemplates"
+            :key="item.id"
+            :label="item.subject"
+            :value="index">
+          </el-option>
+        </el-select>
+      </div>
       <el-divider content-position="center">邮件接收人</el-divider>
       <el-tag v-for="item in email.userName" style="margin-top: 10px">{{item}}</el-tag>
       <div slot="footer" class="dialog-footer">
@@ -211,8 +229,11 @@ export default {
         title: '',
         content: '',
         targetUser: [],
-        userName: []
-      }
+        userName: [],
+        saveAsTemplate: '0'
+      },
+      emailTemplates: [],
+      selectedEmailTmp: null
     }
   },
   methods: {
@@ -308,7 +329,10 @@ export default {
         this.email.targetUser.push(item.userId)
         this.email.userName.push(item.userName)
       })
-      this.dialogEmailVisible = true
+      this.$api.SYS_EMAIL_TMP_LIST({pageNum: 1, pageSize: 100}).then(res => {
+        this.emailTemplates = res.records
+        this.dialogEmailVisible = true
+      })
     },
     send() {
       if (this.email.title === '' || this.email.title.match(/^\s$/)) {
@@ -322,7 +346,8 @@ export default {
       this.$api.SYS_SIGN_UP_RECORD_SEND_EMAIL({
         title: this.email.title,
         content: this.email.content,
-        targetIds: this.email.targetUser
+        targetIds: this.email.targetUser,
+        saveAsTemplate: this.email.saveAsTemplate
       }).then(_ => {
         this.dialogEmailVisible = false
         this.email = {
@@ -333,6 +358,10 @@ export default {
         }
         this.$message.success('发送成功，可到邮件发送记录查看')
       })
+    },
+    setEmailContent(index) {
+      this.email.title = this.emailTemplates[index].subject
+      this.email.content = this.emailTemplates[index].content
     },
   },
   created() {

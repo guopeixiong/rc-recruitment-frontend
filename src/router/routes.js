@@ -65,6 +65,16 @@ const frameIn = [
         },
         component: _import('info_manage/common_qa')
       },
+      // 信息管理-邮件模板
+      {
+        path: 'info/emailTemplate',
+        name: 'emailTemplate',
+        meta: {
+          title: '邮件模板',
+          auth: true
+        },
+        component: _import('info_manage/email_template')
+      },
       // 我的-个人中心
       {
         path: 'mine',
