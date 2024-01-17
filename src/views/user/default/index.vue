@@ -1,20 +1,20 @@
 <template>
   <d2-container>
-    <div class="head_opt">
+    <div style="display: flex">
       <div>
-        <el-input class="stu_num" v-model="form.stuNum" placeholder="学号前缀" maxlength="12"></el-input>
+        <el-input v-model="form.stuNum" placeholder="学号前缀" maxlength="12" size="small"></el-input>
       </div>
-      <div>
-        <el-input class="name" v-model="form.fullName" placeholder="姓名关键字" maxlength="3"></el-input>
+      <div style="margin-left: 10px">
+        <el-input v-model="form.fullName" placeholder="姓名关键字" maxlength="3" size="small"></el-input>
       </div>
-      <div>
-        <el-input class="email" v-model="form.email" placeholder="邮箱前缀" maxlength="30"></el-input>
+      <div style="margin-left: 10px">
+        <el-input v-model="form.email" placeholder="邮箱前缀" maxlength="30" size="small"></el-input>
       </div>
-      <div>
-        <el-input class="phone" v-model="form.phone" placeholder="手机号前缀" maxlength="11"></el-input>
+      <div style="margin-left: 10px">
+        <el-input v-model="form.phone" placeholder="手机号前缀" maxlength="11" size="small"></el-input>
       </div>
-      <div class="search_btn">
-        <el-button icon="el-icon-search" circle @click="getData(1)"></el-button>
+      <div style="margin-left: 10px">
+        <el-button icon="el-icon-search" circle @click="getData(1)" size="small"></el-button>
       </div>
     </div>
     <d2-crud
@@ -197,29 +197,4 @@ export default {
 }
 </script>
 <style lang="scss">
-.head_opt {
-  .stu_num {
-    width: 150px;
-  }
-
-  .name {
-    width: 150px;
-    margin-left: 10px;
-  }
-
-  .email {
-    width: 150px;
-    margin-left: 10px;
-  }
-
-  .phone {
-    width: 150px;
-    margin-left: 10px;
-  }
-
-  .search_btn {
-    margin-left: 10px;
-    width: 150px;
-  }
-}
 </style>

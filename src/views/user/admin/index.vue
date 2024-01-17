@@ -1,10 +1,12 @@
 <template>
   <d2-container>
     <div class="head_opt">
-      <el-input placeholder="请输入姓名关键字" class="search_input" v-model="nameKeyWord" maxlength="10">
-        <el-button slot="append" icon="el-icon-search" @click="getData(1)"></el-button>
-      </el-input>
-      <el-button plain type="success" class="add_btn" icon="el-icon-plus" circle @click="dialogFormVisible = true"></el-button>
+      <div>
+        <el-input placeholder="请输入姓名关键字" class="search_input" v-model="nameKeyWord" maxlength="10" size="small">
+          <el-button slot="append" icon="el-icon-search" @click="getData(1)"></el-button>
+        </el-input>
+      </div>
+      <el-button plain type="success" class="add_btn" icon="el-icon-plus" circle @click="dialogFormVisible = true" size="small"></el-button>
     </div>
     <d2-crud
       ref="d2Crud"
@@ -203,12 +205,11 @@ export default {
   .head_opt {
     display: flex;
     text-align: right;
-    width: 30%;
     .search_input {
 
     }
     .add_btn {
-      margin-left: 5%;
+      margin-left: 10px;
     }
   }
   .tip {

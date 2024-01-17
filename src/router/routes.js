@@ -173,6 +173,16 @@ const frameIn = [
           auth: true
         },
         component: _import('system/opt_log')
+      },
+      // 系统管理-邮件发送记录
+      {
+        path: 'sys/emailSendRecord',
+        name: 'emailSendRecord',
+        meta: {
+          title: '邮件发送记录',
+          auth: true
+        },
+        component: _import('system/email_send_record')
       }
     ]
   }

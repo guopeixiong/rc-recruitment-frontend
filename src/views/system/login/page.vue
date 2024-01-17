@@ -122,12 +122,19 @@ export default {
           // 登录
           // 注意 这里的演示没有传验证码
           // 具体需要传递的数据请自行修改代码
+          const loading = this.$loading({
+            lock: true,
+            text: '登录中',
+            spinner: 'el-icon-loading',
+            background: 'rgba(0, 0, 0, 0.7)'
+          })
           this.login({
             stuNum: this.formLogin.username,
             password: this.formLogin.password
           })
             .then(() => {
-              // 重定向对象不存在则返回顶层路径
+              loading.close()
+              // 重定向对象不存在则返回顶层路径+
               this.$router.replace(this.$route.query.redirect || '/')
             })
         } else {

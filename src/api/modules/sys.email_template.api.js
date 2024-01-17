@@ -32,4 +32,12 @@ export default ({ service, request, serviceForMock, requestForMock, mock, faker,
     })
   },
 
+  SYS_EMAIL_SEND_RECORD(data = {}) {
+    return request({
+      url: `/admin/emailSendRecord/list?pageNum=${data.pageNum}&pageSize=${data.pageSize}&name=${data.name}&email=${data.email}&title=${data.title}` +
+        (data.startTime != null ? `&startTime=${data.startTime}&endTime=${data.endTime}` : ''),
+      method: 'get'
+    })
+  },
+
 })

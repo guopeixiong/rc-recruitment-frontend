@@ -53,7 +53,8 @@ export const menuAside = supplementPath([
     children: [
       { path: '/sys/setting', title: '系统配置', icon: 'wrench' },
       { path: '/sys/optLog', title: '用户操作日志', icon: 'clone' },
-      { path: '/log', title: '系统日志', icon: 'bug' }
+      { path: '/log', title: '系统日志', icon: 'bug' },
+      { path: '/sys/emailSendRecord', title: '邮件发送记录', icon: 'envelope' }
     ]
   },
   { path: '/mine', title: '我的', icon: 'user' }
