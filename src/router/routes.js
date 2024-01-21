@@ -169,10 +169,30 @@ const frameIn = [
         path: 'sys/optLog',
         name: 'optLog',
         meta: {
-          title: '系统设置',
+          title: '用户操作日志',
           auth: true
         },
         component: _import('system/opt_log')
+      },
+      // 系统管理-后台操作日志
+      {
+        path: 'sys/adminOptLog',
+        name: 'adminOptLog',
+        meta: {
+          title: '后台操作日志',
+          auth: true
+        },
+        component: _import('system/admin_opt_log')
+      },
+      // 系统管理-登录日志
+      {
+        path: 'sys/loginLog',
+        name: 'loginLog',
+        meta: {
+          title: '登录日志',
+          auth: true
+        },
+        component: _import('system/login_log')
       },
       // 系统管理-邮件发送记录
       {

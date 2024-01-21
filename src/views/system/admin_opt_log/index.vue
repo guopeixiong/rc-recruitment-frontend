@@ -73,26 +73,10 @@ export default {
           }
         },
         {
-          title: '请求类型',
-          key: 'operType',
-          align: 'center'
-        },
-        {
           title: '请求url',
           key: 'requestUrl',
           align: 'center',
           showOverflowTooltip: true
-        },
-        {
-          title: 'ip',
-          key: 'requestIp',
-          align: 'center',
-          formatter: function (row) {
-            if (!row.requestIp) {
-              return '暂无'
-            }
-            return row.requestIp
-          }
         },
         {
           title: '操作人&时间',
@@ -134,7 +118,7 @@ export default {
         highlightCurrentRow: true,
         stripe: true,
         cellStyle: function ({row, columnIndex}) {
-          if (columnIndex != 7) {
+          if (columnIndex != 5) {
             return {}
           }
           if (row.status !== 'SUCCESS') {
@@ -146,7 +130,6 @@ export default {
         },
       },
       title: '',
-      operaType: '',
       requestMethod: '',
       status: '',
       startTime: null,
@@ -170,7 +153,7 @@ export default {
         this.endTime = null
       }
       this.$api.SYS_LOG_LIST({
-        type: 0,
+        type: 1,
         pageNum: current,
         pageSize: this.page.pageSize,
         startTime: this.startTime,
@@ -186,6 +169,7 @@ export default {
     },
     resetCondition() {
       this.title = ''
+      this.operaType = ''
       this.requestMethod = ''
       this.status = ''
       this.startTime = null
@@ -196,7 +180,7 @@ export default {
   },
   created() {
     this.getData(1)
-    this.$api.SYS_LOG_TITLE_LIST({type: 0}).then(res => this.titleList = res)
+    this.$api.SYS_LOG_TITLE_LIST({type: 1}).then(res => this.titleList = res)
   }
 }
 </script>

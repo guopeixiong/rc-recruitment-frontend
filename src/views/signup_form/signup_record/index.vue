@@ -188,7 +188,7 @@ export default {
         background: true,
       },
       options: {
-        cellStyle: function ({row, column, rowIndex, columnIndex}) {
+        cellStyle: function ({row, columnIndex}) {
           if (columnIndex != 3) {
             return {}
           }

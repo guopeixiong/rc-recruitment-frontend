@@ -39,14 +39,7 @@
   </d2-container>
 </template>
 <script>
-import {fa} from "faker/lib/locales";
-
 export default {
-  computed: {
-    fa() {
-      return fa
-    }
-  },
   data() {
     return {
       columns: [

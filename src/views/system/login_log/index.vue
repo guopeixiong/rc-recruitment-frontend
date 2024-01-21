@@ -2,25 +2,7 @@
   <d2-container>
     <div style="display: flex">
       <div style="margin-left: 10px">
-        <el-select v-model="title" placeholder="请选择标题" size="small">
-          <el-option
-            v-for="item in titleList"
-            :label="item"
-            :value="item">
-          </el-option>
-        </el-select>
-      </div>
-      <div style="margin-left: 10px">
-        <el-select v-model="requestMethod" placeholder="请选择请求方式" size="small">
-          <el-option
-            v-for="item in requestMethodList"
-            :label="item"
-            :value="item">
-          </el-option>
-        </el-select>
-      </div>
-      <div style="margin-left: 10px">
-        <el-select v-model="status" placeholder="请选择操作结果" size="small">
+        <el-select v-model="status" placeholder="请选择登录结果" size="small">
           <el-option
             v-for="item in statusList"
             :label="item.desc"
@@ -57,31 +39,13 @@ export default {
     return {
       columns: [
         {
-          title: '标题',
-          key: 'title',
-          align: 'center'
-        },
-        {
-          title: '请求方式',
-          key: 'requestMethod',
+          title: '学号/邮箱',
+          key: 'requestParam',
           align: 'center',
           formatter: function (row) {
-            if (!row.requestMethod) {
-              return '暂无'
-            }
-            return row.requestMethod
+            const account = JSON.parse(row.requestParam)
+            return account.stuNum || account.email
           }
-        },
-        {
-          title: '请求类型',
-          key: 'operType',
-          align: 'center'
-        },
-        {
-          title: '请求url',
-          key: 'requestUrl',
-          align: 'center',
-          showOverflowTooltip: true
         },
         {
           title: 'ip',
@@ -95,15 +59,9 @@ export default {
           }
         },
         {
-          title: '操作人&时间',
+          title: '登录时间',
           key: 'createTime',
-          align: 'center',
-          formatter: function (row) {
-            if (!row.createBy) {
-              return '未知操作人名称' + '：' + row.createTime
-            }
-            return row.createBy + '：' + row.createTime
-          }
+          align: 'center'
         },
         {
           title: '错误信息',
@@ -118,7 +76,7 @@ export default {
           }
         },
         {
-          title: '操作状态',
+          title: '登录结果',
           key: 'status',
           align: 'center'
         },
@@ -134,7 +92,7 @@ export default {
         highlightCurrentRow: true,
         stripe: true,
         cellStyle: function ({row, columnIndex}) {
-          if (columnIndex != 7) {
+          if (columnIndex != 4) {
             return {}
           }
           if (row.status !== 'SUCCESS') {
@@ -145,14 +103,9 @@ export default {
           return {}
         },
       },
-      title: '',
-      operaType: '',
-      requestMethod: '',
       status: '',
       startTime: null,
       endTime: null,
-      titleList: [],
-      requestMethodList: ['GET', 'POST', 'PUT', 'DELETE'],
       statusList: [{desc: 'SUCCESS', value: 0}, {desc: 'FAIL', value: 1}],
       time: null
     }
@@ -170,13 +123,11 @@ export default {
         this.endTime = null
       }
       this.$api.SYS_LOG_LIST({
-        type: 0,
+        type: 2,
         pageNum: current,
         pageSize: this.page.pageSize,
         startTime: this.startTime,
         endTime: this.endTime,
-        title: this.title,
-        requestMethod: this.requestMethod,
         status: this.status
       }).then(res => {
         this.data = res.records
@@ -185,8 +136,6 @@ export default {
       })
     },
     resetCondition() {
-      this.title = ''
-      this.requestMethod = ''
       this.status = ''
       this.startTime = null
       this.endTime = null
@@ -196,7 +145,6 @@ export default {
   },
   created() {
     this.getData(1)
-    this.$api.SYS_LOG_TITLE_LIST({type: 0}).then(res => this.titleList = res)
   }
 }
 </script>
