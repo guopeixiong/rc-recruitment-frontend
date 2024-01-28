@@ -35,6 +35,7 @@ export const menuAside = supplementPath([
     icon: 'info',
     children: [
       { path: '/info/introduction', title: '首页简介', icon: 'bookmark' },
+      { path: '/info/indexImage', title: '首页轮播图', icon: 'image' },
       { path: '/info/commonQa', title: '常见问题', icon: 'question' },
       { path: '/info/emailTemplate', title: '邮件模板' },
     ]

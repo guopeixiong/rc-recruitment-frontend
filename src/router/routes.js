@@ -50,10 +50,20 @@ const frameIn = [
         path: 'info/introduction',
         name: 'introduction',
         meta: {
-          title: '简介信息',
+          title: '首页简介信息',
           auth: true
         },
         component: _import('info_manage/index_page')
+      },
+      // 信息管理-轮播图
+      {
+        path: 'info/indexImage',
+        name: 'indexImage',
+        meta: {
+          title: '首页轮播图',
+          auth: true
+        },
+        component: _import('info_manage/index_image')
       },
       // 信息管理-常见问题
       {
