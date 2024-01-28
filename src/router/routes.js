@@ -154,16 +154,6 @@ const frameIn = [
         },
         component: _import('user_consultation')
       },
-      // 系统管理-系统配置
-      {
-        path: 'sys/setting',
-        name: 'setting',
-        meta: {
-          title: '系统设置',
-          auth: true
-        },
-        component: _import('system/setting')
-      },
       // 系统管理-用户操作日志
       {
         path: 'sys/optLog',

@@ -335,11 +335,11 @@ export default {
       })
     },
     send() {
-      if (this.email.title === '' || this.email.title.match(/^\s$/)) {
+      if (this.email.title === '' || this.email.title.trim() === '') {
         this.$message.error('邮件标题不能为空')
         return
       }
-      if (this.email.content === '' || this.email.content.match(/^\s$/)) {
+      if (this.email.content === '' || this.email.content.trim() === '') {
         this.$message.error('邮件内容不能为空')
         return
       }

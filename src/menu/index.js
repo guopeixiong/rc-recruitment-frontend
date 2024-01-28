@@ -51,7 +51,6 @@ export const menuAside = supplementPath([
     title: '系统管理',
     icon: 'gears',
     children: [
-      { path: '/sys/setting', title: '系统配置', icon: 'wrench' },
       { path: '/sys/optLog', title: '用户操作日志', icon: 'clone' },
       { path: '/sys/adminOptLog', title: '后台操作日志', icon: 'clone' },
       { path: '/sys/loginLog', title: '登录日志', icon: 'clone' },

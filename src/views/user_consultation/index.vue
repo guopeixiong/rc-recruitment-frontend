@@ -197,7 +197,7 @@ export default {
       this.consulting.replyContent = this.data[this.consulting.index].replyContent
     },
     submit() {
-      if (this.consulting.replyContent === '' || this.consulting.replyContent.match(/^\s$/)) {
+      if (this.consulting.replyContent === '' || this.consulting.replyContent.trim() === '') {
         this.$message.error('回复内容不能为空')
         return
       }

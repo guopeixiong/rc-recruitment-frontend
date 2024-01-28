@@ -25,5 +25,22 @@ export default ({ service, request, serviceForMock, requestForMock, mock, faker,
       url: '/h5/userInfo/auth/getUserInfo',
       method: 'get'
     })
-  }
+  },
+
+  SYS_USER_UPDATE(data = {}) {
+    return request({
+      url: '/admin/user/admin/update',
+      method: 'put',
+      data
+    })
+  },
+
+  SYS_USER_UPDATE_PWD(data = {}) {
+    data = encrypt(data)
+    return request({
+      url: '/admin/user/admin/update/password',
+      method: 'put',
+      data
+    })
+  },
 })

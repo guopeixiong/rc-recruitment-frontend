@@ -86,13 +86,13 @@ export default {
   },
   methods: {
     getData(current) {
-      if (this.name.match(/^\s$/)) {
+      if (this.name.trim() === '') {
         this.name = ''
       }
-      if (this.email.match(/^\s$/)) {
+      if (this.email.trim() === '') {
         this.email = ''
       }
-      if (this.title.match(/^\s$/)) {
+      if (this.title.trim() === '') {
         this.title = ''
       }
       if (this.time != null) {
