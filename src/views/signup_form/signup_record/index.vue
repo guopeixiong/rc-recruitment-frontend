@@ -325,6 +325,8 @@ export default {
       })
     },
     sendEmail() {
+      this.email.targetUser = []
+      this.email.userName = []
       this.selectedItem.forEach(item => {
         this.email.targetUser.push(item.userId)
         this.email.userName.push(item.userName)
