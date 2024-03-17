@@ -9,9 +9,11 @@ import store from '@/store/index'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import D2Crud from '@d2-projects/d2-crud'
+import pluginExport from '@d2-projects/vue-table-export'
 
 Vue.use(ElementUI)
 Vue.use(D2Crud)
+Vue.use(pluginExport)
 
 // 菜单和路由设置
 import router from './router'

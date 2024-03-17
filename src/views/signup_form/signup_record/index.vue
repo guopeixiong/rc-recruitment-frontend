@@ -1,5 +1,7 @@
 <template>
   <d2-container>
+    <el-button size="small" type="success" :disabled="selectedId.length <= 0" @click="exportSelected">导出
+    </el-button>
     <el-button size="small" type="danger" plain :disabled="selectedId.length <= 0" @click="finishProcess">终止流程
     </el-button>
     <el-button size="small" type="warning" plain :disabled="selectedId.length <= 0" @click="sendEmail">发送邮件</el-button>
@@ -233,7 +235,8 @@ export default {
         saveAsTemplate: '0'
       },
       emailTemplates: [],
-      selectedEmailTmp: null
+      selectedEmailTmp: null,
+      exportData: []
     }
   },
   methods: {
@@ -255,9 +258,11 @@ export default {
     handleSelectionChange(selection) {
       this.selectedId = []
       this.selectedItem = []
+      this.exportData = []
       selection.forEach(item => {
         this.selectedId.push(item.id)
         this.selectedItem.push(item)
+        this.exportData.push({name: item.userName, time: item.createTime})
       })
     },
     opt({_, row}) {
@@ -365,6 +370,23 @@ export default {
       this.email.title = this.emailTemplates[index].subject
       this.email.content = this.emailTemplates[index].content
     },
+    exportSelected() {
+      const columns = [
+        {
+          label: '姓名',
+          prop: 'name'
+        },
+        {
+          label: '报名时间',
+          prop: 'time'
+        }
+      ]
+      this.$export.excel({
+        columns: columns,
+        data: this.exportData,
+        title: '报名数据-' + Date.now()
+      })
+    }
   },
   created() {
     this.getData(1)
