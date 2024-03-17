@@ -63,7 +63,7 @@
           :mode="mode"
         />
         <Editor
-          style="height: 500px; overflow-y: hidden;"
+          style="height: 200px; overflow-y: hidden;"
           v-model="detail.content"
           :defaultConfig="editorConfig"
           :mode="mode"

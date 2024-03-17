@@ -164,6 +164,15 @@ const frameIn = [
         },
         component: _import('user_consultation')
       },
+      {
+        path: 'activity',
+        name: 'activity',
+        meta: {
+          title: '活动管理',
+          auth: true
+        },
+        component: _import('activity')
+      },
       // 系统管理-用户操作日志
       {
         path: 'sys/optLog',
