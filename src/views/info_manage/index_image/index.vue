@@ -95,7 +95,7 @@ export default {
       })
     },
     disable(id, index) {
-      this.$api.SYS_IMAGE_STATUS({id: id, status: 1}).then(_ => {
+      this.$api.SYS_IMAGE_STATUS({id: id, status: 0}).then(_ => {
         this.data[index].isEnabled = 0
         this.$message.success('禁用成功')
       })
