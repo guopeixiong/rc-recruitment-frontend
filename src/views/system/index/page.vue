@@ -5,9 +5,9 @@
            class="box">
         <div style="text-align: center; font-weight: bold; color: #606266; margin-bottom: 2vh">当前首页轮播图</div>
         <el-carousel height="20vh" style="border-radius: 10px">
-          <el-carousel-item v-for="item in images" :key="item">
+          <el-carousel-item v-for="item in images" :key="item.url">
             <el-image
-              :src="imageUrlPrefix + '/resources' + item"
+              :src="imageUrlPrefix + '/resources' + item.url"
               fit="contain"
             ></el-image>
           </el-carousel-item>

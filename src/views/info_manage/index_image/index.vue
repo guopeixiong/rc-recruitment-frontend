@@ -24,9 +24,32 @@
           <el-button type="text" style="color: #67C23A" size="medium" v-if="item.isEnabled === 0" @click="enable(item.id, index)">启用</el-button>
           <el-button type="text" style="color: #F56C6C" size="medium" @click="deleteImage(item.id, index)">删除</el-button>
         </div>
+        <div>
+          <el-button v-if="item.activityId" type="text" style="color: #4ba6ff" size="medium" @click="bindActivity(item.id, item.activityId, index)">更换活动</el-button>
+          <el-button v-else type="text" style="color: #67c23a" size="medium" @click="bindActivity(item.id, item.activityId, index)">绑定活动</el-button>
+        </div>
         <div class="time">2024-01-28 11:11:11</div>
       </el-card>
     </div>
+    <el-dialog
+      title="请选择绑定活动"
+      :visible.sync="showBindDialog"
+      width="30%"
+      center>
+      <div style="text-align: center">
+        <el-select v-model="selectId" placeholder="请选择活动" clearable>
+          <el-option
+            v-for="item in activity"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id">
+          </el-option>
+        </el-select>
+      </div>
+      <span slot="footer" class="dialog-footer">
+    <el-button type="primary" @click="bind">确 定</el-button>
+  </span>
+    </el-dialog>
   </d2-container>
 </template>
 <script>
@@ -41,7 +64,13 @@ export default {
         Authorization: util.cookies.get('token')
       },
       action: process.env.VUE_APP_API + '/admin/image/upload',
-      imageUrlPrefix: process.env.VUE_APP_API
+      imageUrlPrefix: process.env.VUE_APP_API,
+      waitToBindId: '',
+      selectId: '',
+      selectIndex: '',
+      oldId: '',
+      showBindDialog: false,
+      activity: []
     }
   },
   methods: {
@@ -83,6 +112,26 @@ export default {
         })
       }).catch(() => {})
     },
+    bindActivity(id, activityId, index) {
+      this.waitToBindId = id
+      this.selectId = activityId || ''
+      this.selectIndex = index
+      this.oldId = activityId || ''
+      this.showBindDialog = true
+      if (this.activity.length > 0) {
+        return
+      }
+      this.$api.SYS_IMAGE_ACTIVITY_LIST().then(res => {
+        this.activity = res
+      })
+    },
+    bind() {
+      this.$api.SYS_IMAGE_BIND_ACTIVITY({id: this.waitToBindId, activityId: this.selectId}).then(_ => {
+        this.data[this.selectIndex].activityId = this.selectId
+        this.showBindDialog = false
+        this.$message.success('绑定成功')
+      })
+    }
   },
   created() {
     this.getData()

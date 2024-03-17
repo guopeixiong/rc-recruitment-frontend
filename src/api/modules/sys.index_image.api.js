@@ -21,4 +21,19 @@ export default ({ request }) => ({
     })
   },
 
+  SYS_IMAGE_ACTIVITY_LIST() {
+    return request({
+      url: '/admin/image/activityList',
+      method: 'get'
+    })
+  },
+
+  SYS_IMAGE_BIND_ACTIVITY(data = {}) {
+    return request({
+      url: '/admin/image/bindActivity',
+      method: 'put',
+      data
+    })
+  },
+
 })
