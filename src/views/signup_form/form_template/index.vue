@@ -33,6 +33,16 @@
             </el-option>
           </el-select>
         </el-form-item>
+        <el-form-item>
+          <el-select v-model="tmp.type" placeholder="请选择类型">
+            <el-option
+              v-for="item in [{name: '报名', value: 0}, {name: '活动', value: 1}]"
+              :key="item.value"
+              :label="item.name"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </el-form-item>
       </el-form>
       <span style="color: #33333390"><i class="el-icon-warning"/> 创建成功后请点击 查看&编辑 按钮添加题目</span>
       <div slot="footer" class="dialog-footer">
@@ -166,6 +176,17 @@ export default {
           align: 'center'
         },
         {
+          title: '类型',
+          key: 'type',
+          align: 'center',
+          formatter: function (row) {
+            if (row.type === 1) {
+              return '活动'
+            }
+            return '报名'
+          }
+        },
+        {
           title: '流程名称',
           key: 'processName',
           align: 'center'
@@ -234,6 +255,7 @@ export default {
       tmp: {
         name: '',
         processId: '',
+        type: ''
       },
       rules: {
         name: [
