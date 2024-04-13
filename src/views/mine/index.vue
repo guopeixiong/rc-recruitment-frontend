@@ -1,6 +1,6 @@
 <template>
   <d2-container class="background">
-    <el-descriptions size="medium" column="1" style="width: 30%;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -90%)" border>
+    <el-descriptions size="medium" column="1" style="width: 50%;position: absolute;top: 50%;transform: translate(0, -90%)" border>
       <el-descriptions-item>
         <template slot="label">
           <i class="el-icon-user"></i>

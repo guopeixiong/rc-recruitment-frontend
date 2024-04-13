@@ -13,7 +13,7 @@
       @selection-change="handleSelectionChange"
       @pagination-current-change="paginationCurrentChange"
       @opt="optQa"/>
-    <el-dialog title="常见问题" :visible.sync="dialogFormVisible" center width="30%" :close-on-click-modal="false">
+    <el-dialog title="常见问题" :visible.sync="dialogFormVisible" center width="50%" :close-on-click-modal="false">
       <el-form :model="qa" :rules="rules" ref="qa">
         <el-form-item label="问题" prop="question">
           <el-input

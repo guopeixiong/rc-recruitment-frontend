@@ -13,7 +13,7 @@
       @selection-change="handleSelectionChange"
       @pagination-current-change="paginationCurrentChange"
       @opt="opt"/>
-    <el-dialog title="常见问题" :visible.sync="dialogFormVisible" center width="30%" :close-on-click-modal="false">
+    <el-dialog title="报名流程" :visible.sync="dialogFormVisible" center width="60%" :close-on-click-modal="false">
       <el-form :model="process" :rules="rules" ref="process">
         <el-form-item label="名称" prop="name">
           <el-input

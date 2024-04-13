@@ -28,6 +28,19 @@
           <el-button v-if="item.activityId" type="text" style="color: #4ba6ff" size="medium" @click="bindActivity(item.id, item.activityId, index)">更换活动</el-button>
           <el-button v-else type="text" style="color: #67c23a" size="medium" @click="bindActivity(item.id, item.activityId, index)">绑定活动</el-button>
         </div>
+        <div style="text-align: center">
+          <el-select v-model="selectId" placeholder="请选择活动" clearable>
+            <el-option
+              v-for="item in activity"
+              :key="item.id"
+              :label="item.name"
+              :value="item.id">
+            </el-option>
+          </el-select>
+        </div>
+        <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="bind">确 定</el-button>
+      </span>
         <div class="time">2024-01-28 11:11:11</div>
       </el-card>
     </div>
@@ -47,8 +60,8 @@
         </el-select>
       </div>
       <span slot="footer" class="dialog-footer">
-    <el-button type="primary" @click="bind">确 定</el-button>
-  </span>
+        <el-button type="primary" @click="bind">确 定</el-button>
+      </span>
     </el-dialog>
   </d2-container>
 </template>

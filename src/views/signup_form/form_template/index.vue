@@ -13,12 +13,13 @@
       @selection-change="handleSelectionChange"
       @pagination-current-change="paginationCurrentChange"
       @opt="optTmp"/>
-    <el-dialog title="新增报名表" :visible.sync="dialogFormVisibleTemplate" :close-on-click-modal="false" center
-               width="30%">
+    <el-dialog title="新增报名表" :visible.sync="dialogFormVisibleTemplate" :close-on-click-modal="false"
+               width="50%">
       <el-form :model="tmp" :rules="rules" ref="tmp">
         <el-form-item prop="name">
           <el-input
             placeholder="请输入报名表名称"
+            style="width: 50%"
             maxlength="20"
             v-model="tmp.name">
           </el-input>
@@ -51,7 +52,7 @@
       </div>
     </el-dialog>
     <el-dialog title="" :visible.sync="dialogFormVisibleTemplateDetail" :close-on-click-modal="false" center
-               width="50%">
+               width="70%">
       <div class="form-box">
         <div class="form-detail">
           <el-empty v-if="formDetail.length <= 0" description="请添加题目"></el-empty>
@@ -76,9 +77,9 @@
               </div>
             </div>
             <div class="qus-content">
-              <div><el-input v-model="item.content" placeholder="请输入问题内容" size="small"></el-input></div>
+              <el-input v-model="item.content" placeholder="请输入问题内容" size="small"></el-input>
+              <el-input v-if="item.type == 0" placeholder="请输入您的回答" size="mini" disabled style="margin-top: 10px"></el-input>
             </div>
-            <el-input v-if="item.type == 0" placeholder="请输入您的回答" size="mini" disabled></el-input>
             <div class="answer-options" v-if="item.type === 1">
               <div class="options-item" v-for="(_, optionIndex) in item.options">
                 <div class="options-icon">
@@ -92,7 +93,7 @@
                              @click="deleteOption(index, optionIndex)" v-if="optionIndex >= 2"></el-button>
                 </div>
               </div>
-              <div>
+              <div style="width: 50%; margin: 0 auto">
                 <el-button type="text" size="mini" @click="addOption(index)">添加选项</el-button>
               </div>
             </div>
@@ -109,7 +110,7 @@
                              @click="deleteOption(index, optionIndex)" v-if="optionIndex >= 2"></el-button>
                 </div>
               </div>
-              <div>
+              <div style="width: 50%; margin: 0 auto">
                 <el-button type="text" size="mini" @click="addOption(index)">添加选项</el-button>
               </div>
             </div>
@@ -469,16 +470,16 @@ export default {
       }
 
       .qus-content {
-        display: flex;
-        margin: 10px 0;
-
+        //display: flex;
+        margin: 10px auto;
+        width: 50%;
       }
 
       .answer-options {
         .options-item {
           display: flex;
-          margin-bottom: 10px;
-
+          margin: 10px auto;
+          width: 50%;
           .options-icon {
             text-align: left;
           }

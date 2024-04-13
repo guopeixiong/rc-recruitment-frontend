@@ -14,7 +14,7 @@
       @pagination-current-change="paginationCurrentChange"
       @enable="enable"
       @edit="edit"/>
-    <el-dialog title="新增简介" :visible.sync="addDialog" center width="20%"
+    <el-dialog title="新增简介" :visible.sync="addDialog" center width="40%"
                :close-on-click-modal="false">
         <el-input
           placeholder="请输入标题"
@@ -23,7 +23,7 @@
           v-model="form.title">
         </el-input>
       <el-input
-        style="margin-top: 10px"
+        style="margin-top: 30px"
         type="textarea"
         :autosize="{ minRows: 2, maxRows: 6}"
         placeholder="请输入备注"
@@ -35,7 +35,7 @@
         <el-button type="primary" @click="submitForAdd">确 定</el-button>
       </div>
     </el-dialog>
-    <el-dialog :title="currentTitle" :visible.sync="editDialog" center width="50%"
+    <el-dialog :title="currentTitle" :visible.sync="editDialog" center width="60%"
                :close-on-click-modal="false">
       <div>
         <el-input

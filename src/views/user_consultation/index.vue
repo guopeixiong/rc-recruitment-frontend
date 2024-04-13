@@ -12,7 +12,7 @@
       @selection-change="handleSelectionChange"
       @pagination-current-change="paginationCurrentChange"
       @opt="opt"/>
-    <el-dialog title="咨询详情" :visible.sync="dialogFormVisible" center width="30%" :close-on-click-modal="false">
+    <el-dialog title="咨询详情" :visible.sync="dialogFormVisible" center width="60%" :close-on-click-modal="false">
       <el-divider content-position="center">咨询用户信息</el-divider>
       <el-descriptions class="margin-top" :column="2" size="medium" border>
         <el-descriptions-item>

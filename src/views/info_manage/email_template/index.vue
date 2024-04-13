@@ -13,7 +13,7 @@
       @selection-change="handleSelectionChange"
       @pagination-current-change="paginationCurrentChange"
       @opt="opt"/>
-    <el-dialog title="邮件模板" :visible.sync="dialogFormVisible" center width="20%" :close-on-click-modal="false">
+    <el-dialog title="邮件模板" :visible.sync="dialogFormVisible" center width="50%" :close-on-click-modal="false">
       <el-form :model="tmp" :rules="rules" ref="tmp">
         <el-form-item label="标题" prop="title">
           <el-input

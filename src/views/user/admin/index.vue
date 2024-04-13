@@ -18,7 +18,7 @@
       @pagination-current-change="paginationCurrentChange"
       @disableUser="disableUser"
       @enableUser="enableUser"/>
-    <el-dialog title="新增管理员" :visible.sync="dialogFormVisible" center width="30%">
+    <el-dialog title="新增管理员" :visible.sync="dialogFormVisible" center width="50%">
       <el-form :model="admin" :rules="rules" ref="admin">
         <el-form-item label="学号" prop="stuNum">
           <el-input v-model="admin.stuNum" placeholder="请输入管理员学号"></el-input>

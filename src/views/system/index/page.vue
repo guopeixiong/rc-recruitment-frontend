@@ -1,23 +1,7 @@
 <template>
   <d2-container>
     <div style="display: flex">
-      <div style="flex: 3; border: 2px solid #DCDFE6; padding: 20px; border-radius: 10px; margin-top: 20px; margin-left: 30px"
-           class="box">
-        <div style="text-align: center; font-weight: bold; color: #606266; margin-bottom: 2vh">当前首页轮播图</div>
-        <el-carousel height="20vh" style="border-radius: 10px">
-          <el-carousel-item v-for="item in images" :key="item.url">
-            <el-image
-              :src="imageUrlPrefix + '/resources' + item.url"
-              fit="contain"
-            ></el-image>
-          </el-carousel-item>
-        </el-carousel>
-        <div style="text-align: center; font-weight: bold; color: #606266; margin: 2vh 0">当前首页简介</div>
-        <div
-          style="border: 1px #E4E7ED solid; padding: 10px; border-radius: 10px; height: 40vh; overflow: auto"
-          v-html="indexIntroduction"/>
-      </div>
-      <div style="flex: 3;margin-top: 20px; margin-left: 30px; margin-right: 30px">
+      <div style="flex: 1;margin-top: 20px; margin-left: 30px; margin-right: 30px">
         <div style="padding: 20px; border: 2px #DCDFE6 solid; border-radius: 10px;" class="box">
           <div style="text-align: center; font-weight: bold; color: #606266">待回复咨询</div>
           <el-table
@@ -57,7 +41,7 @@
           </el-table>
         </div>
       </div>
-      <div style="flex: 2; margin-top: 20px; margin-right: 30px">
+      <div style="flex: 1; margin-top: 20px; margin-right: 30px">
         <div style="padding: 20px; border: 2px #DCDFE6 solid; border-radius: 10px" class="box">
           <div style="text-align: center; font-weight: bold; color: #606266">最近报名</div>
           <el-table
@@ -117,9 +101,6 @@ export default {
     return {
       lastSignRecord: [],
       lastErrorLog: [],
-      images: [],
-      imageUrlPrefix: process.env.VUE_APP_API,
-      indexIntroduction: '',
       consulting: [],
       qa: []
     }
@@ -133,16 +114,6 @@ export default {
     getLastErrorLog() {
       this.$api.SYS_INDEX_LAST_ERROR_LOG().then(res => {
         this.lastErrorLog = res
-      })
-    },
-    getImages() {
-      this.$api.SYS_INDEX_GET_IMAGE().then(res => {
-        this.images = res
-      })
-    },
-    getText() {
-      this.$api.SYS_INDEX_GET_TEXT().then(res => {
-        this.indexIntroduction = res
       })
     },
     getConsulting() {
@@ -159,8 +130,6 @@ export default {
   created() {
     this.getLastSign()
     this.getLastErrorLog()
-    this.getImages()
-    this.getText()
     this.getConsulting()
     this.getQa()
   }

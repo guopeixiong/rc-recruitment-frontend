@@ -39,7 +39,7 @@
       @selection-change="handleSelectionChange"
       @pagination-current-change="paginationCurrentChange"
       @opt="opt"/>
-    <el-dialog :title="this.currentUserName + '的报名表'" :visible.sync="dialogFormVisible" center width="30%"
+    <el-dialog :title="this.currentUserName + '的报名表'" :visible.sync="dialogFormVisible" center width="60%"
                :close-on-click-modal="false">
       <el-descriptions class="margin-top" :column="2" size="medium" border>
         <el-descriptions-item>
@@ -105,7 +105,7 @@
         <el-button @click="dialogFormVisible = false">关闭</el-button>
       </div>
     </el-dialog>
-    <el-dialog title="发送邮件" :visible.sync="dialogEmailVisible" center width="20%"
+    <el-dialog title="发送邮件" :visible.sync="dialogEmailVisible" center width="50%"
                :close-on-click-modal="false">
       <el-input v-model="email.title" placeholder="请输入邮件标题"></el-input>
       <el-input v-model="email.content"
